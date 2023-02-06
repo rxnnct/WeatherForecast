@@ -5,7 +5,7 @@ data class Weather(
     val lastUpdated: String,
     val currentTemperature: String,
     val condition: Condition,
-    val forecast: List<DayForecast>
+    val forecast: ArrayList<DayForecast>
 )
 
 data class DayForecast(
@@ -13,7 +13,7 @@ data class DayForecast(
     val maxTemperature: String,
     val minTemperature: String,
     val condition: Condition,
-    val hoursForecast: List<HourForecast>
+    val hoursForecast: ArrayList<HourForecast>
 )
 
 data class HourForecast(
