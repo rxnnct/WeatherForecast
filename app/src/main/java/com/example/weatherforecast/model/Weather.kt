@@ -2,7 +2,6 @@ package com.example.weatherforecast.model
 
 data class Weather(
     val location: String,
-    val lastUpdated: String,
     val currentTemperature: String,
     val condition: Condition,
     val forecast: ArrayList<DayForecast>
