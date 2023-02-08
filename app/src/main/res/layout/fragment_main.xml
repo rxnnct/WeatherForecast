@@ -75,7 +75,7 @@
                 android:id="@+id/ivTodayWeatherImage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:contentDescription="@string/current_weather_image_button_description"
+                android:contentDescription="@string/today_weather_image_description"
                 android:src="@drawable/ic_launcher_foreground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tvTodayWeatherCondition"
