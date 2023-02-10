@@ -8,13 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherforecast.R
+import com.example.weatherforecast.adapters.HoursAdapter
 import com.example.weatherforecast.databinding.FragmentMainBinding
+import com.example.weatherforecast.model.Condition
+import com.example.weatherforecast.model.HourForecast
 import com.example.weatherforecast.utils.isPermissionGranted
 
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
+    private lateinit var hoursAdapter: HoursAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +41,42 @@ class MainFragment : Fragment() {
                 ).show()
             }.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
+
+        initWeatherListRecyclerView()
+    }
+
+    private fun initWeatherListRecyclerView() = with(binding) {
+        rvHoursWeather.layoutManager = LinearLayoutManager(activity)
+        hoursAdapter = HoursAdapter()
+        rvHoursWeather.adapter = hoursAdapter
+        // TODO: remove:
+        val hoursList = listOf<HourForecast>(
+            HourForecast(
+                "00:00",
+                "10 C",
+                Condition(
+                    "Rainy",
+                    ""
+                )
+            ),
+            HourForecast(
+                "01:00",
+                "15 C",
+                Condition(
+                    "Sunny",
+                    ""
+                )
+            ),
+            HourForecast(
+                "01:00",
+                "12 C",
+                Condition(
+                    "Rainy",
+                    ""
+                )
+            )
+        )
+        hoursAdapter.submitList(hoursList)
     }
 
     companion object {

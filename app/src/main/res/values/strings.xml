@@ -9,4 +9,5 @@
     <string name="after_tomorrow_weather_image_description">Weather</string>
     <string name="search_image_button_description">Weather</string>
     <string name="home_image_button_description">Weather</string>
+    <string name="no_data">No data</string>
 </resources>

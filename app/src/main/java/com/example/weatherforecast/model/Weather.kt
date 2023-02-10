@@ -4,7 +4,7 @@ data class Weather(
     val location: String,
     val currentTemperature: String,
     val condition: Condition,
-    val forecast: ArrayList<DayForecast>
+    val daysForecast: ArrayList<DayForecast>
 )
 
 data class DayForecast(
