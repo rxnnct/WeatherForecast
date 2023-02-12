@@ -1,6 +1,5 @@
-package com.example.weatherforecast.adapters
+package com.example.weatherforecast.view.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecast.R
 import com.example.weatherforecast.databinding.HoursListItemBinding
-import com.example.weatherforecast.model.HourForecast
+import com.example.weatherforecast.model.WeatherData.Forecast.Forecastday.Hour
 
-class HoursAdapter : ListAdapter<HourForecast, HoursAdapter.Holder>(ItemComparator()) {
+class HoursAdapter : ListAdapter<Hour, HoursAdapter.Holder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
@@ -24,22 +23,22 @@ class HoursAdapter : ListAdapter<HourForecast, HoursAdapter.Holder>(ItemComparat
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
-        val binding = HoursListItemBinding.bind(view)
+        private val binding = HoursListItemBinding.bind(view)
 
-        fun bind(item: HourForecast) = with(binding) {
+        fun bind(item: Hour) = with(binding) {
             tvHour.text = item.time
-            tvCondition.text = item.condition.description
-            tvTemperature.text = item.temperature
+            tvCondition.text = item.condition.text
+            tvTemperature.text = item.temp_c.toString()
             // TODO: url
         }
     }
 
-    class ItemComparator : DiffUtil.ItemCallback<HourForecast>() {
-        override fun areItemsTheSame(oldItem: HourForecast, newItem: HourForecast): Boolean {
+    class ItemComparator : DiffUtil.ItemCallback<Hour>() {
+        override fun areItemsTheSame(oldItem: Hour, newItem: Hour): Boolean {
             return oldItem.time == newItem.time
         }
 
-        override fun areContentsTheSame(oldItem: HourForecast, newItem: HourForecast): Boolean {
+        override fun areContentsTheSame(oldItem: Hour, newItem: Hour): Boolean {
             return oldItem == newItem
         }
     }

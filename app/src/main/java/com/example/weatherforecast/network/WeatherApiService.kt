@@ -1,11 +1,19 @@
 package com.example.weatherforecast.network
 
+import com.example.weatherforecast.model.WeatherData
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface WeatherApiService {
 
-    // TODO: params
-    @GET("forecast.json?key=92ebf3024f0c4d17a7f143512232901&q=London&days=1&aqi=no&alerts=no")
-    suspend fun getWeatherData(): Response<WeatherRequestData>
+    // TODO: maybe Map is better
+    @GET("forecast.json")
+    suspend fun getWeatherForecast(
+        @Query("key") key: String,
+        @Query("q") q: String,
+        @Query("days") days: String,
+        @Query("aqi") aqi: String,
+        @Query("alerts") alerts: String,
+    ): Response<WeatherData>
 }

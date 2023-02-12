@@ -1,6 +1,7 @@
-package com.example.weatherforecast.network
+package com.example.weatherforecast.model
 
-data class WeatherRequestData(
+// TODO: clean unused fields
+data class WeatherData(
     val current: Current,
     val forecast: Forecast,
     val location: Location
