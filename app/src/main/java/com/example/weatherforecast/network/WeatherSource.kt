@@ -3,7 +3,7 @@ package com.example.weatherforecast.network
 import com.example.weatherforecast.model.WeatherData
 import retrofit2.Response
 
-class RetrofitWeatherSource {
+class WeatherSource {
     private val retrofitService = RetrofitClient.retrofitService
 
     suspend fun getWeatherForecast(location: String): Response<WeatherData> {
