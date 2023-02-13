@@ -8,7 +8,7 @@ import com.example.weatherforecast.repository.WeatherRepository
 
 class WeatherViewModel : ViewModel() {
 
-    private var weatherLiveData = MutableLiveData<WeatherData>()
+    var weatherLiveData = MutableLiveData<WeatherData>()
     fun getCustomersRepository(location: String): LiveData<WeatherData> {
         return weatherLiveData
     }

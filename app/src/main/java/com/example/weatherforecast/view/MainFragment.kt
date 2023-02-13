@@ -3,19 +3,21 @@ package com.example.weatherforecast.view
 import android.Manifest
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.weatherforecast.view.adapters.HoursAdapter
+import com.example.weatherforecast.R.*
 import com.example.weatherforecast.databinding.FragmentMainBinding
 import com.example.weatherforecast.model.WeatherData
+import com.example.weatherforecast.view.adapters.HoursAdapter
 import com.example.weatherforecast.view.utils.isPermissionGranted
+
 
 class MainFragment : Fragment() {
 
@@ -50,7 +52,7 @@ class MainFragment : Fragment() {
             Log.d("MyLog", it.current.temp_c.toString())
         }
         weatherViewModel.getCustomersRepository("London").observe(viewLifecycleOwner, observer)
-
+        updateTodayCard()
     }
 
     private fun initWeatherListRecyclerView() = with(binding) {
@@ -85,6 +87,15 @@ class MainFragment : Fragment() {
 //            )
 //        )
 //        hoursAdapter.submitList(hoursList)
+    }
+
+    private fun updateTodayCard() = with(binding) {
+        weatherViewModel.weatherLiveData.observe(viewLifecycleOwner) {
+            tvLocation.text = it.location.name
+            tvTodayTemperature.text = getString(string.celsius, it.current.temp_c.toString())
+            tvTodayWeatherCondition.text = it.current.condition.text
+            // TODO: pic via Picasso
+        }
     }
 
     companion object {
