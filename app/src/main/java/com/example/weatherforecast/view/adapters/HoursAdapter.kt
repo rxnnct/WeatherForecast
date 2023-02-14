@@ -1,5 +1,6 @@
 package com.example.weatherforecast.view.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecast.R
 import com.example.weatherforecast.databinding.HoursListItemBinding
 import com.example.weatherforecast.model.WeatherData.Forecast.Forecastday.Hour
+import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HoursAdapter : ListAdapter<Hour, HoursAdapter.Holder>(ItemComparator()) {
 
@@ -26,10 +30,10 @@ class HoursAdapter : ListAdapter<Hour, HoursAdapter.Holder>(ItemComparator()) {
         private val binding = HoursListItemBinding.bind(view)
 
         fun bind(item: Hour) = with(binding) {
-            tvHour.text = item.time
+            tvHour.text = item.time.takeLast(5)
             tvCondition.text = item.condition.text
             tvTemperature.text = item.temp_c.toString()
-            // TODO: url
+            Picasso.get().load("https:" + item.condition.icon).into(ivCondition)
         }
     }
 

@@ -2,7 +2,6 @@ package com.example.weatherforecast.view
 
 import android.Manifest
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +9,12 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherforecast.R.*
 import com.example.weatherforecast.databinding.FragmentMainBinding
-import com.example.weatherforecast.model.WeatherData
 import com.example.weatherforecast.view.adapters.HoursAdapter
 import com.example.weatherforecast.view.utils.isPermissionGranted
-
+import com.squareup.picasso.Picasso
 
 class MainFragment : Fragment() {
 
@@ -46,55 +43,45 @@ class MainFragment : Fragment() {
             }.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
 
+        weatherViewModel.getWeatherRepository("London")
+        updateCards()
         initWeatherListRecyclerView()
-
-        val observer = Observer<WeatherData> {
-            Log.d("MyLog", it.current.temp_c.toString())
+        weatherViewModel.weatherLiveData.observe(viewLifecycleOwner){
+            hoursAdapter.submitList(it.forecast.forecastday[0].hour)
         }
-        weatherViewModel.getCustomersRepository("London").observe(viewLifecycleOwner, observer)
-        updateTodayCard()
     }
 
     private fun initWeatherListRecyclerView() = with(binding) {
         rvHoursWeather.layoutManager = LinearLayoutManager(activity)
         hoursAdapter = HoursAdapter()
         rvHoursWeather.adapter = hoursAdapter
-        // TODO: remove:
-//        val hoursList = listOf<Hour>(
-//            HourForecast(
-//                "00:00",
-//                "10 C",
-//                Hour.Condition(
-//                    "Rainy",
-//                    ""
-//                )
-//            ),
-//            HourForecast(
-//                "01:00",
-//                "15 C",
-//                Condition(
-//                    "Sunny",
-//                    ""
-//                )
-//            ),
-//            HourForecast(
-//                "01:00",
-//                "12 C",
-//                Condition(
-//                    "Rainy",
-//                    ""
-//                )
-//            )
-//        )
-//        hoursAdapter.submitList(hoursList)
+
     }
 
-    private fun updateTodayCard() = with(binding) {
+    private fun updateCards() = with(binding) {
         weatherViewModel.weatherLiveData.observe(viewLifecycleOwner) {
             tvLocation.text = it.location.name
-            tvTodayTemperature.text = getString(string.celsius, it.current.temp_c.toString())
+            tvTodayTemperature.text = getString(string.today_temperature, it.current.temp_c)
             tvTodayWeatherCondition.text = it.current.condition.text
-            // TODO: pic via Picasso
+            Picasso.get().load(getString(string.https) + it.current.condition.icon).into(ivTodayWeatherImage)
+
+            tvTomorrowTemperature.text = getString(
+                string.next_days_temperature,
+                it.forecast.forecastday[1].day.mintemp_c,
+                it.forecast.forecastday[1].day.maxtemp_c
+            )
+            tvTomorrowWeatherCondition.text = it.forecast.forecastday[1].day.condition.text
+            Picasso.get().load(getString(string.https) + it.forecast.forecastday[1].day.condition.icon)
+                .into(ivTomorrowWeatherImage)
+
+            tvAfterTomorrowTemperature.text = getString(
+                string.next_days_temperature,
+                it.forecast.forecastday[2].day.mintemp_c,
+                it.forecast.forecastday[2].day.maxtemp_c
+            )
+            tvAfterTomorrowWeatherCondition.text = it.forecast.forecastday[2].day.condition.text
+            Picasso.get().load(getString(string.https) + it.forecast.forecastday[2].day.condition.icon)
+                .into(ivAfterTomorrowWeatherImage)
         }
     }
 
