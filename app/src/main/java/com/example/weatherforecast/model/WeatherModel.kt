@@ -1,7 +1,7 @@
 package com.example.weatherforecast.model
 
 // TODO: clean unused fields
-data class WeatherData(
+data class WeatherModel(
     val current: Current,
     val forecast: Forecast,
     val location: Location

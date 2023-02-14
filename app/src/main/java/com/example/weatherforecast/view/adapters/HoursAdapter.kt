@@ -1,6 +1,5 @@
 package com.example.weatherforecast.view.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecast.R
 import com.example.weatherforecast.databinding.HoursListItemBinding
-import com.example.weatherforecast.model.WeatherData.Forecast.Forecastday.Hour
+import com.example.weatherforecast.model.WeatherModel.Forecast.Forecastday.Hour
 import com.squareup.picasso.Picasso
-import java.text.SimpleDateFormat
-import java.util.*
 
 class HoursAdapter : ListAdapter<Hour, HoursAdapter.Holder>(ItemComparator()) {
 

@@ -1,12 +1,12 @@
 package com.example.weatherforecast.network
 
-import com.example.weatherforecast.model.WeatherData
+import com.example.weatherforecast.model.WeatherModel
 import retrofit2.Response
 
 class WeatherSource {
     private val retrofitService = RetrofitClient.retrofitService
 
-    suspend fun getWeatherForecast(location: String): Response<WeatherData> {
+    suspend fun getWeatherForecast(location: String): Response<WeatherModel> {
         return retrofitService.getWeatherForecast(
             KEY,
             location,
