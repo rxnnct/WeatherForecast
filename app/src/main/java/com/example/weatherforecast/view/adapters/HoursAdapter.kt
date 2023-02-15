@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecast.R
 import com.example.weatherforecast.databinding.HoursListItemBinding
-import com.example.weatherforecast.model.WeatherModel.Forecast.Forecastday.Hour
+import com.example.weatherforecast.network.WeatherResponse.Forecast.Forecastday.Hour
 import com.squareup.picasso.Picasso
 
 class HoursAdapter : ListAdapter<Hour, HoursAdapter.Holder>(ItemComparator()) {

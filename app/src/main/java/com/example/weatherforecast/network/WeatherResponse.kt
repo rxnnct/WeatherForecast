@@ -1,6 +1,6 @@
-package com.example.weatherforecast.model
+package com.example.weatherforecast.network
 
-data class WeatherModel(
+data class WeatherResponse(
     val current: Current,
     val forecast: Forecast,
     val location: Location
