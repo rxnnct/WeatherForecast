@@ -1,5 +1,6 @@
 package com.example.weatherforecast.network
 
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -14,5 +15,5 @@ interface WeatherApiService {
         @Query("days") days: String,
         @Query("aqi") aqi: String,
         @Query("alerts") alerts: String,
-    ): Response<WeatherResponse>
+    ): Response<ResponseBody>
 }

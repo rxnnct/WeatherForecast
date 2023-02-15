@@ -12,7 +12,7 @@
     <string name="no_data">No data</string>
     <string name="tomorrow">Tomorrow</string>
     <string name="after_tomorrow">After tomorrow</string>
-    <string name="today_temperature">%1$.1f °C</string>
-    <string name="next_days_temperature">%1$.1f °C / %2$.1f °C</string>
+    <string name="today_temperature">%1$s °C</string>
+    <string name="next_days_temperature">%1$s °C / %2$s °C</string>
     <string name="https">https:</string>
 </resources>

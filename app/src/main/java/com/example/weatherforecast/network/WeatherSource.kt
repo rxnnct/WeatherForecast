@@ -1,11 +1,12 @@
 package com.example.weatherforecast.network
 
+import okhttp3.ResponseBody
 import retrofit2.Response
 
 class WeatherSource {
     private val retrofitService = RetrofitClient.retrofitService
 
-    suspend fun getWeatherForecast(location: String): Response<WeatherResponse> {
+    suspend fun getWeatherForecast(location: String): Response<ResponseBody> {
         return retrofitService.getWeatherForecast(
             KEY,
             location,

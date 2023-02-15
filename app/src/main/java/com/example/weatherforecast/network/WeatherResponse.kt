@@ -1,5 +1,6 @@
 package com.example.weatherforecast.network
 
+// TODO: remove 
 data class WeatherResponse(
     val current: Current,
     val forecast: Forecast,
