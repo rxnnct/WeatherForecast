@@ -3,7 +3,7 @@ package com.example.weatherforecast.view
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.weatherforecast.model.Weather
-import com.example.weatherforecast.repository.WeatherRepository
+import com.example.weatherforecast.model.WeatherService
 
 class MainViewModel : ViewModel() {
 
@@ -14,6 +14,6 @@ class MainViewModel : ViewModel() {
     }
 
     fun getWeatherRepository() {
-        weatherLiveData = WeatherRepository.getWeatherForecast("New York")
+        weatherLiveData = WeatherService.getWeatherForecast("New York")
     }
 }

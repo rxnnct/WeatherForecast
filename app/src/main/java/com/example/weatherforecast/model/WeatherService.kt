@@ -1,10 +1,6 @@
-package com.example.weatherforecast.repository
+package com.example.weatherforecast.model
 
 import androidx.lifecycle.MutableLiveData
-import com.example.weatherforecast.model.Condition
-import com.example.weatherforecast.model.ForecastDay
-import com.example.weatherforecast.model.ForecastHour
-import com.example.weatherforecast.model.Weather
 import com.example.weatherforecast.network.WeatherSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +8,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
-class WeatherRepository {
+class WeatherService {
     companion object {
         fun getWeatherForecast(location: String): MutableLiveData<Weather> {
 
@@ -35,7 +31,6 @@ class WeatherRepository {
         }
 
         private fun parseWeatherData(weatherJsonObject: JSONObject): Weather {
-
             val daysList = ArrayList<ForecastDay>()
             val daysArray = weatherJsonObject.getJSONObject("forecast").getJSONArray("forecastday")
             for (i in 0 until daysArray.length()) {
