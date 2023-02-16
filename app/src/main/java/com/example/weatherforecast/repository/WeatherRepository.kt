@@ -19,18 +19,13 @@ class WeatherRepository {
             val weatherLiveData: MutableLiveData<Weather> = MutableLiveData<Weather>()
 
             CoroutineScope(Dispatchers.Default).launch {
-
                 launch(Dispatchers.IO) {
                     val response = WeatherSource().getWeatherForecast(location)
                     withContext(Dispatchers.Default)
                     {
                         response.let {
                             weatherLiveData.postValue(
-                                parseWeatherData(
-                                    JSONObject(
-                                        response.body()?.string().toString()
-                                    )
-                                )
+                                parseWeatherData(JSONObject(response.body()?.string().toString()))
                             )
                         }
                     }

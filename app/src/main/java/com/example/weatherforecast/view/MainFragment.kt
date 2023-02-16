@@ -20,7 +20,7 @@ class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
     private lateinit var hoursAdapter: HoursAdapter
-    private val weatherViewModel: WeatherViewModel by activityViewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,13 +44,12 @@ class MainFragment : Fragment() {
         }
 
         binding.ibHome.setOnClickListener {
-            weatherViewModel.getWeatherRepository("Berlin")
+            mainViewModel.getWeatherRepository()
         }
 
-        weatherViewModel.getWeatherRepository("London")
         updateCards()
         initWeatherListRecyclerView()
-        weatherViewModel.weatherLiveData.observe(viewLifecycleOwner) {
+        mainViewModel.weatherLiveData.observe(viewLifecycleOwner) {
             hoursAdapter.submitList(it.forecastDays[0].forecastHours)
         }
     }
@@ -59,11 +58,10 @@ class MainFragment : Fragment() {
         rvHoursWeather.layoutManager = LinearLayoutManager(activity)
         hoursAdapter = HoursAdapter()
         rvHoursWeather.adapter = hoursAdapter
-
     }
 
     private fun updateCards() = with(binding) {
-        weatherViewModel.weatherLiveData.observe(viewLifecycleOwner) {
+        mainViewModel.weatherLiveData.observe(viewLifecycleOwner) {
             tvLocation.text = it.location
             tvTodayTemperature.text = getString(string.today_temperature, it.temperature)
             tvTodayWeatherCondition.text = it.condition.description
