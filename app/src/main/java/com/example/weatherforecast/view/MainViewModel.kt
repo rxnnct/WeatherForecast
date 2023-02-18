@@ -10,10 +10,14 @@ class MainViewModel : ViewModel() {
     var weatherLiveData = MutableLiveData<Weather>()
 
     init {
-        getWeatherRepository()
+        getWeather()
     }
 
-    fun getWeatherRepository() {
+    fun getWeather() {
         weatherLiveData = WeatherService.getWeatherForecast()
+    }
+
+    fun getWeather(location: String) {
+        weatherLiveData = WeatherService.getWeatherForecast(location)
     }
 }

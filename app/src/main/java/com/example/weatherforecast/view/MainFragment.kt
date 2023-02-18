@@ -44,7 +44,7 @@ class MainFragment : Fragment() {
         }
 
         binding.ibHome.setOnClickListener {
-            mainViewModel.getWeatherRepository()
+            mainViewModel.getWeather()
         }
 
         updateCards()

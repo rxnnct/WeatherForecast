@@ -12,15 +12,23 @@ import org.json.JSONObject
 class WeatherService {
 
     companion object {
-        fun getWeatherForecast(): MutableLiveData<Weather> {
+        fun getWeatherForecast(location: String): MutableLiveData<Weather> {
+            return getWeatherFromSource(location)
+        }
 
-            val currentLocation = CurrentLocationService.getCurrentLocation()
+        fun getWeatherForecast(): MutableLiveData<Weather> {
+            //getLocation
+            val location = "Minsk"
+            return getWeatherFromSource(location)
+        }
+
+        private fun getWeatherFromSource(location: String): MutableLiveData<Weather> {
 
             val weatherLiveData: MutableLiveData<Weather> = MutableLiveData<Weather>()
 
             CoroutineScope(Dispatchers.Default).launch {
                 launch(Dispatchers.IO) {
-                    val response = WeatherSource().getWeatherForecast(currentLocation)
+                    val response = WeatherSource().getWeatherForecast(location)
                     withContext(Dispatchers.Default)
                     {
                         response.let {
