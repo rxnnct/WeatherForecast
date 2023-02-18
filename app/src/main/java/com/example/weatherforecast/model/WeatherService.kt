@@ -1,7 +1,6 @@
 package com.example.weatherforecast.model
 
 import androidx.lifecycle.MutableLiveData
-import com.example.weatherforecast.network.WeatherApiService
 import com.example.weatherforecast.network.WeatherSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
