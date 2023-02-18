@@ -36,7 +36,8 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireContext())
         return binding.root
     }
 
@@ -81,7 +82,10 @@ class MainFragment : Fragment() {
         ) {
             return
         }
-        fusedLocationProviderClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, cancellationTokenSource.token)
+        fusedLocationProviderClient.getCurrentLocation(
+            Priority.PRIORITY_HIGH_ACCURACY,
+            cancellationTokenSource.token
+        )
             .addOnCompleteListener {
                 mainViewModel.getWeather("${it.result.latitude},${it.result.longitude}")
             }
