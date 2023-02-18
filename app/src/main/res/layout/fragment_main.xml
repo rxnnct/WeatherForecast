@@ -167,7 +167,7 @@
 
             <TextView
                 android:id="@+id/tvTomorrowWeatherCondition"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_color"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -249,7 +249,7 @@
 
             <TextView
                 android:id="@+id/tvAfterTomorrowWeatherCondition"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_color"
                 app:layout_constraintBottom_toBottomOf="parent"
