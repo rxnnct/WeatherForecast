@@ -14,6 +14,6 @@ class MainViewModel : ViewModel() {
     }
 
     fun getWeatherRepository() {
-        weatherLiveData = WeatherService.getWeatherForecast("New York")
+        weatherLiveData = WeatherService.getWeatherForecast()
     }
 }

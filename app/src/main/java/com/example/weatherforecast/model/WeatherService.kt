@@ -1,6 +1,7 @@
 package com.example.weatherforecast.model
 
 import androidx.lifecycle.MutableLiveData
+import com.example.weatherforecast.network.WeatherApiService
 import com.example.weatherforecast.network.WeatherSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -9,14 +10,17 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
 class WeatherService {
+
     companion object {
-        fun getWeatherForecast(location: String): MutableLiveData<Weather> {
+        fun getWeatherForecast(): MutableLiveData<Weather> {
+
+            val currentLocation = CurrentLocationService.getCurrentLocation()
 
             val weatherLiveData: MutableLiveData<Weather> = MutableLiveData<Weather>()
 
             CoroutineScope(Dispatchers.Default).launch {
                 launch(Dispatchers.IO) {
-                    val response = WeatherSource().getWeatherForecast(location)
+                    val response = WeatherSource().getWeatherForecast(currentLocation)
                     withContext(Dispatchers.Default)
                     {
                         response.let {
