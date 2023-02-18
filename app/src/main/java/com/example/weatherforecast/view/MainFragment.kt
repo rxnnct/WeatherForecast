@@ -3,7 +3,6 @@ package com.example.weatherforecast.view
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherforecast.R.*
 import com.example.weatherforecast.databinding.FragmentMainBinding
-import com.example.weatherforecast.model.WeatherService
 import com.example.weatherforecast.view.adapters.HoursAdapter
 import com.example.weatherforecast.view.utils.isPermissionGranted
 import com.google.android.gms.location.FusedLocationProviderClient
