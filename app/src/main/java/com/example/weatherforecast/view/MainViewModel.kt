@@ -1,5 +1,6 @@
 package com.example.weatherforecast.view
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.weatherforecast.model.Weather
@@ -19,5 +20,6 @@ class MainViewModel : ViewModel() {
 
     fun getWeather(location: String) {
         weatherLiveData = WeatherService.getWeatherForecast(location)
+        Log.d("MyLog", weatherLiveData.value?.location.toString())
     }
 }

@@ -17,7 +17,6 @@ class WeatherService {
         }
 
         fun getWeatherForecast(): MutableLiveData<Weather> {
-            //getLocation
             val location = "Minsk"
             return getWeatherFromSource(location)
         }
