@@ -1,4 +1,4 @@
-package com.example.weatherforecast.network
+package ru.rxnnct.weatherforecast.network
 
 import okhttp3.ResponseBody
 import retrofit2.Response

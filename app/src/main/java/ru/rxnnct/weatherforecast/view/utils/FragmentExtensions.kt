@@ -1,4 +1,4 @@
-package com.example.weatherforecast.view.utils
+package ru.rxnnct.weatherforecast.view.utils
 
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity

@@ -1,46 +1,12 @@
-package com.example.weatherforecast.model
+package ru.rxnnct.weatherforecast.model
 
-import androidx.lifecycle.MutableLiveData
-import com.example.weatherforecast.network.WeatherSource
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
 class WeatherService {
 
     companion object {
-        fun getWeatherForecast(location: String): MutableLiveData<Weather> {
-            return getWeatherFromSource(location)
-        }
 
-        fun getWeatherForecast(): MutableLiveData<Weather> {
-            val location = "Minsk"
-            return getWeatherFromSource(location)
-        }
-
-        private fun getWeatherFromSource(location: String): MutableLiveData<Weather> {
-
-            val weatherLiveData: MutableLiveData<Weather> = MutableLiveData<Weather>()
-
-            CoroutineScope(Dispatchers.Default).launch {
-                launch(Dispatchers.IO) {
-                    val response = WeatherSource().getWeatherForecast(location)
-                    withContext(Dispatchers.Default)
-                    {
-                        response.let {
-                            weatherLiveData.postValue(
-                                parseWeatherData(JSONObject(response.body()?.string().toString()))
-                            )
-                        }
-                    }
-                }
-            }
-            return weatherLiveData
-        }
-
-        private fun parseWeatherData(weatherJsonObject: JSONObject): Weather {
+        fun parseWeatherData(weatherJsonObject: JSONObject): Weather {
             val daysList = ArrayList<ForecastDay>()
             val daysArray = weatherJsonObject.getJSONObject("forecast").getJSONArray("forecastday")
             for (i in 0 until daysArray.length()) {
