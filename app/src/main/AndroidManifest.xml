@@ -20,7 +20,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="${WEATHER_API_KEY}" />
         <activity
-            android:name=".MainActivity"
+            android:name="ru.rxnnct.weatherforecast.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

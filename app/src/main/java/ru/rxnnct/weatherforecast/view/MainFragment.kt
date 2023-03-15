@@ -1,4 +1,4 @@
-package com.example.weatherforecast.view
+package ru.rxnnct.weatherforecast.view
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -12,10 +12,10 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.weatherforecast.R.*
-import com.example.weatherforecast.databinding.FragmentMainBinding
-import com.example.weatherforecast.view.adapters.HoursAdapter
-import com.example.weatherforecast.view.utils.isPermissionGranted
+import ru.rxnnct.weatherforecast.R.*
+import ru.rxnnct.weatherforecast.databinding.FragmentMainBinding
+import ru.rxnnct.weatherforecast.view.adapters.HoursAdapter
+import ru.rxnnct.weatherforecast.view.utils.isPermissionGranted
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority

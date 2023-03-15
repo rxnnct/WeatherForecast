@@ -1,11 +1,11 @@
-package com.example.weatherforecast.view
+package ru.rxnnct.weatherforecast.view
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.weatherforecast.model.Weather
-import com.example.weatherforecast.model.WeatherService
-import com.example.weatherforecast.network.WeatherSource
+import ru.rxnnct.weatherforecast.model.Weather
+import ru.rxnnct.weatherforecast.model.WeatherService
+import ru.rxnnct.weatherforecast.network.WeatherSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

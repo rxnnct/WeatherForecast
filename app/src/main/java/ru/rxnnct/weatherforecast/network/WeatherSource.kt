@@ -1,6 +1,6 @@
-package com.example.weatherforecast.network
+package ru.rxnnct.weatherforecast.network
 
-import com.example.weatherforecast.BuildConfig
+import ru.rxnnct.weatherforecast.BuildConfig
 import okhttp3.ResponseBody
 import retrofit2.Response
 

@@ -1,4 +1,4 @@
-package com.example.weatherforecast.model
+package ru.rxnnct.weatherforecast.model
 
 import org.json.JSONObject
 
