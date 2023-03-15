@@ -53,14 +53,13 @@ class MainFragment : Fragment() {
         }
 
         getLocation()
+        updateCards()
+        initWeatherListRecyclerView()
 
         binding.ibHome.setOnClickListener {
             getLocation()
-            updateCards()
         }
 
-        updateCards()
-        initWeatherListRecyclerView()
         mainViewModel.weatherLiveData.observe(viewLifecycleOwner) {
             hoursAdapter.submitList(it.forecastDays[0].forecastHours)
         }
