@@ -1,4 +1,4 @@
-package com.example.weatherforecast.view.adapters
+package ru.rxnnct.weatherforecast.view.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weatherforecast.R
-import com.example.weatherforecast.databinding.HoursListItemBinding
-import com.example.weatherforecast.model.ForecastHour
+import ru.rxnnct.weatherforecast.R
+import ru.rxnnct.weatherforecast.databinding.HoursListItemBinding
+import ru.rxnnct.weatherforecast.model.ForecastHour
 import com.squareup.picasso.Picasso
 
 class HoursAdapter : ListAdapter<ForecastHour, HoursAdapter.Holder>(ItemComparator()) {

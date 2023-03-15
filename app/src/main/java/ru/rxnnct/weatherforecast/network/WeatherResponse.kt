@@ -1,4 +1,4 @@
-package com.example.weatherforecast.network
+package ru.rxnnct.weatherforecast.network
 
 // TODO: remove 
 data class WeatherResponse(
