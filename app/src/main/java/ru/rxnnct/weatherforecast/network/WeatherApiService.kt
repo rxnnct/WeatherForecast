@@ -1,13 +1,13 @@
 package ru.rxnnct.weatherforecast.network
 
-import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
+import ru.rxnnct.weatherforecast.model.Weather
 
 interface WeatherApiService {
 
-    // TODO: maybe Map is better
+    //Maybe Map is better
     @GET("forecast.json")
     suspend fun getWeatherForecast(
         @Query("key") key: String,
@@ -15,5 +15,5 @@ interface WeatherApiService {
         @Query("days") days: String,
         @Query("aqi") aqi: String,
         @Query("alerts") alerts: String,
-    ): Response<ResponseBody>
+    ): Response<Weather>
 }

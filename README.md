@@ -3,7 +3,7 @@ Yet another weather application.
 
 ## Note!
 This application is under development.
-In the future I plan to add a settings screen (based on database) and location search.
+In the future I plan to add a settings screen (based on shared prefs) and location search.
 
 ## Implementation details
 * Kotlin
