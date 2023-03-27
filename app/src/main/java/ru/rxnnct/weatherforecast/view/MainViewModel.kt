@@ -21,6 +21,7 @@ class MainViewModel : ViewModel() {
         return getWeatherFromSource(location)
     }
 
+    // TODO: move to network package
     private fun getWeatherFromSource(location: String): MutableLiveData<Weather> {
         viewModelScope.launch {
             launch(Dispatchers.IO) {

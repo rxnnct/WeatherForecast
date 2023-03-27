@@ -65,29 +65,6 @@ class MainFragment : Fragment() {
         }
     }
 
-    // TODO: move to services
-    private fun getLocation() {
-        val cancellationTokenSource = CancellationTokenSource()
-
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-        fusedLocationProviderClient.getCurrentLocation(
-            Priority.PRIORITY_HIGH_ACCURACY,
-            cancellationTokenSource.token
-        )
-            .addOnCompleteListener {
-                mainViewModel.getWeather("${it.result.latitude},${it.result.longitude}")
-            }
-    }
-
     private fun initWeatherListRecyclerView() = with(binding) {
         rvHoursWeather.layoutManager = LinearLayoutManager(activity)
         hoursAdapter = HoursAdapter()
@@ -120,6 +97,29 @@ class MainFragment : Fragment() {
             Picasso.get().load(getString(string.https) + it.forecast.forecastday[2].day.condition.icon)
                 .into(ivAfterTomorrowWeatherImage)
         }
+    }
+
+    // TODO: move to services
+    private fun getLocation() {
+        val cancellationTokenSource = CancellationTokenSource()
+
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+        fusedLocationProviderClient.getCurrentLocation(
+            Priority.PRIORITY_HIGH_ACCURACY,
+            cancellationTokenSource.token
+        )
+            .addOnCompleteListener {
+                mainViewModel.getWeather("${it.result.latitude},${it.result.longitude}")
+            }
     }
 
     companion object {

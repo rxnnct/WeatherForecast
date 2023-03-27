@@ -7,7 +7,7 @@ import ru.rxnnct.weatherforecast.model.Weather
 
 interface WeatherApiService {
 
-    // TODO: maybe Map is better
+    //Maybe Map is better
     @GET("forecast.json")
     suspend fun getWeatherForecast(
         @Query("key") key: String,
