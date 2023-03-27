@@ -1,26 +1,43 @@
 package ru.rxnnct.weatherforecast.model
 
 data class Weather(
-    val location: String,
-    val temperature: String,
-    val condition: Condition,
-    val forecastDays: ArrayList<ForecastDay>
-)
+    val current: Current,
+    val forecast: Forecast,
+    val location: Location
+) {
+    data class Current(
+        val condition: Condition,
+        val temp_c: Double
+    )
 
-data class ForecastDay(
-    val maxTemperature: String,
-    val minTemperature: String,
-    val condition: Condition,
-    val forecastHours: ArrayList<ForecastHour>
-)
+    data class Forecast(
+        val forecastday: List<Forecastday>
+    ) {
+        data class Forecastday(
+            val day: Day,
+            val hour: List<Hour>
+        ) {
 
-data class Condition(
-    val description: String,
-    val imageUrl: String
-)
+            data class Day(
+                val condition: Condition,
+                val maxtemp_c: Double,
+                val mintemp_c: Double
+            )
 
-data class ForecastHour(
-    val hour: String,
-    val condition: Condition,
-    val temperature: String
-)
+            data class Hour(
+                val condition: Condition,
+                val temp_c: Double,
+                val time: String
+            )
+        }
+    }
+
+    data class Location(
+        val name: String
+    )
+
+    data class Condition(
+        val icon: String,
+        val text: String
+    )
+}

@@ -1,13 +1,13 @@
 package ru.rxnnct.weatherforecast.network
 
 import ru.rxnnct.weatherforecast.BuildConfig
-import okhttp3.ResponseBody
 import retrofit2.Response
+import ru.rxnnct.weatherforecast.model.Weather
 
-class WeatherSource {
+class WeatherRemoteSource {
     private val retrofitService = RetrofitClient.retrofitService
 
-    suspend fun getWeatherForecast(location: String): Response<ResponseBody> {
+    suspend fun getWeatherForecast(location: String): Response<Weather> {
         return retrofitService.getWeatherForecast(
             KEY,
             location,
