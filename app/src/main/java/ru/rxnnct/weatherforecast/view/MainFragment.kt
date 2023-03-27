@@ -74,7 +74,8 @@ class MainFragment : Fragment() {
     private fun updateCards() = with(binding) {
         mainViewModel.weatherLiveData.observe(viewLifecycleOwner) {
             tvLocation.text = it.location.name
-            tvTodayTemperature.text = getString(string.today_temperature, it.current.temp_c.toString())
+            tvTodayTemperature.text =
+                getString(string.today_temperature, it.current.temp_c.toString())
             tvTodayWeatherCondition.text = it.current.condition.text
             Picasso.get().load(getString(string.https) + it.current.condition.icon)
                 .into(ivTodayWeatherImage)
@@ -85,7 +86,8 @@ class MainFragment : Fragment() {
                 it.forecast.forecastday[1].day.maxtemp_c.toString()
             )
             tvTomorrowWeatherCondition.text = it.forecast.forecastday[1].day.condition.text
-            Picasso.get().load(getString(string.https) + it.forecast.forecastday[1].day.condition.icon)
+            Picasso.get()
+                .load(getString(string.https) + it.forecast.forecastday[1].day.condition.icon)
                 .into(ivTomorrowWeatherImage)
 
             tvAfterTomorrowTemperature.text = getString(
@@ -94,7 +96,8 @@ class MainFragment : Fragment() {
                 it.forecast.forecastday[2].day.maxtemp_c.toString()
             )
             tvAfterTomorrowWeatherCondition.text = it.forecast.forecastday[2].day.condition.text
-            Picasso.get().load(getString(string.https) + it.forecast.forecastday[2].day.condition.icon)
+            Picasso.get()
+                .load(getString(string.https) + it.forecast.forecastday[2].day.condition.icon)
                 .into(ivAfterTomorrowWeatherImage)
         }
     }
