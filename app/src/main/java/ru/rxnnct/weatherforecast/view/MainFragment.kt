@@ -61,7 +61,7 @@ class MainFragment : Fragment() {
         }
 
         mainViewModel.weatherLiveData.observe(viewLifecycleOwner) {
-            hoursAdapter.submitList(it.forecastDays[0].forecastHours)
+            hoursAdapter.submitList(it.forecast.forecastday[0].hour)
         }
     }
 
@@ -96,28 +96,28 @@ class MainFragment : Fragment() {
 
     private fun updateCards() = with(binding) {
         mainViewModel.weatherLiveData.observe(viewLifecycleOwner) {
-            tvLocation.text = it.location
-            tvTodayTemperature.text = getString(string.today_temperature, it.temperature)
-            tvTodayWeatherCondition.text = it.condition.description
-            Picasso.get().load(getString(string.https) + it.condition.imageUrl)
+            tvLocation.text = it.location.name
+            tvTodayTemperature.text = getString(string.today_temperature, it.current.temp_c.toString())
+            tvTodayWeatherCondition.text = it.current.condition.text
+            Picasso.get().load(getString(string.https) + it.current.condition.icon)
                 .into(ivTodayWeatherImage)
 
             tvTomorrowTemperature.text = getString(
                 string.next_days_temperature,
-                it.forecastDays[1].minTemperature,
-                it.forecastDays[1].maxTemperature
+                it.forecast.forecastday[1].day.mintemp_c.toString(),
+                it.forecast.forecastday[1].day.maxtemp_c.toString()
             )
-            tvTomorrowWeatherCondition.text = it.forecastDays[1].condition.description
-            Picasso.get().load(getString(string.https) + it.forecastDays[1].condition.imageUrl)
+            tvTomorrowWeatherCondition.text = it.forecast.forecastday[1].day.condition.text
+            Picasso.get().load(getString(string.https) + it.forecast.forecastday[1].day.condition.icon)
                 .into(ivTomorrowWeatherImage)
 
             tvAfterTomorrowTemperature.text = getString(
                 string.next_days_temperature,
-                it.forecastDays[2].minTemperature,
-                it.forecastDays[2].maxTemperature
+                it.forecast.forecastday[2].day.mintemp_c.toString(),
+                it.forecast.forecastday[2].day.maxtemp_c.toString()
             )
-            tvAfterTomorrowWeatherCondition.text = it.forecastDays[2].condition.description
-            Picasso.get().load(getString(string.https) + it.forecastDays[2].condition.imageUrl)
+            tvAfterTomorrowWeatherCondition.text = it.forecast.forecastday[2].day.condition.text
+            Picasso.get().load(getString(string.https) + it.forecast.forecastday[2].day.condition.icon)
                 .into(ivAfterTomorrowWeatherImage)
         }
     }

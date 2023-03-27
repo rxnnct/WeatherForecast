@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.rxnnct.weatherforecast.R
 import ru.rxnnct.weatherforecast.databinding.HoursListItemBinding
-import ru.rxnnct.weatherforecast.model.ForecastHour
 import com.squareup.picasso.Picasso
+import ru.rxnnct.weatherforecast.model.Weather.Forecast.Forecastday.Hour
 
-class HoursAdapter : ListAdapter<ForecastHour, HoursAdapter.Holder>(ItemComparator()) {
+class HoursAdapter : ListAdapter<Hour, HoursAdapter.Holder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
@@ -26,20 +26,20 @@ class HoursAdapter : ListAdapter<ForecastHour, HoursAdapter.Holder>(ItemComparat
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = HoursListItemBinding.bind(view)
 
-        fun bind(item: ForecastHour) = with(binding) {
-            tvHour.text = item.hour.takeLast(5)
-            tvCondition.text = item.condition.description
-            tvTemperature.text = item.temperature
-            Picasso.get().load("https:" + item.condition.imageUrl).into(ivCondition)
+        fun bind(item: Hour) = with(binding) {
+            tvHour.text = item.time.takeLast(5)
+            tvCondition.text = item.condition.text
+            tvTemperature.text = item.temp_c.toString()
+            Picasso.get().load("https:" + item.condition.icon).into(ivCondition)
         }
     }
 
-    class ItemComparator : DiffUtil.ItemCallback<ForecastHour>() {
-        override fun areItemsTheSame(oldItem: ForecastHour, newItem: ForecastHour): Boolean {
-            return oldItem.hour == newItem.hour
+    class ItemComparator : DiffUtil.ItemCallback<Hour>() {
+        override fun areItemsTheSame(oldItem: Hour, newItem: Hour): Boolean {
+            return oldItem.time == newItem.time
         }
 
-        override fun areContentsTheSame(oldItem: ForecastHour, newItem: ForecastHour): Boolean {
+        override fun areContentsTheSame(oldItem: Hour, newItem: Hour): Boolean {
             return oldItem == newItem
         }
     }
